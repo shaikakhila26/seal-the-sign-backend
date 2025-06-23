@@ -3,11 +3,23 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+
+import authRoutes from './routes/authRoutes.js';
+
+
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // if Vite dev server is running here
+  credentials: true
+}
+
+));
 app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -29,5 +41,22 @@ mongoose
 
 
 
-import authRoutes from './routes/authRoutes.js';
-app.use('/api/auth', authRoutes);
+
+
+
+app.use('/uploads', express.static('uploads'));
+
+
+import documentRoutes from './routes/documentRoutes.js';
+app.use('/api/docs', documentRoutes);
+
+
+// Custom error handler
+app.use((err, req, res, next) => {
+  if (err instanceof Error && err.message === 'Only PDF files are allowed') {
+    return res.status(400).json({ message: err.message });
+  }
+
+  // Default error fallback
+  res.status(500).json({ message: 'Something went wrong', error: err.message });
+});
