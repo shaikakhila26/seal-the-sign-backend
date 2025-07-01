@@ -1,24 +1,45 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
 
-import authRoutes from './routes/authRoutes.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+//import authRoutes from './routes/authRoutes.js';
+
+//import signatureRoutes from './routes/signatureRoutes.js';
+
 
 
 dotenv.config();
 
 const app = express();
+
+
 app.use(cors({
   origin: 'http://localhost:5173', // if Vite dev server is running here
   credentials: true
 }
 
 ));
+app.use('/uploads', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  next();
+},express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 
+import authRoutes from './routes/authRoutes.js';
+
+import signatureRoutes from './routes/signatureRoutes.js';
+
 app.use('/api/auth', authRoutes);
+
+
+
 
 
 const PORT = process.env.PORT || 5000;
@@ -39,16 +60,9 @@ mongoose
   })
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
-
-
-
-
-
-app.use('/uploads', express.static('uploads'));
-
-
 import documentRoutes from './routes/documentRoutes.js';
 app.use('/api/docs', documentRoutes);
+app.use('/api/signatures', signatureRoutes);
 
 
 // Custom error handler
@@ -60,3 +74,7 @@ app.use((err, req, res, next) => {
   // Default error fallback
   res.status(500).json({ message: 'Something went wrong', error: err.message });
 });
+
+
+console.log('✅ Static uploads being served from:', path.join(__dirname, 'uploads'));
+

@@ -5,6 +5,9 @@ const documentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  originalName: {
+     type: String 
+    },
   filePath: {
     type: String,
     required: true

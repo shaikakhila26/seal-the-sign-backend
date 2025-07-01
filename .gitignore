@@ -1,12 +1,23 @@
-# dependencies
+# Node modules and build
 node_modules/
+dist/
 
-# environment variables
+# Environment config
 .env
+.env.local
+.env.production
 
-# logs (optional)
+# Logs and debug
+logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# system files
+# OS metadata
 .DS_Store
+
+# Uploads and generated files
+uploads/
+
 Thumbs.db
