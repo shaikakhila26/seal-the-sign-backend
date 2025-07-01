@@ -9,6 +9,8 @@ export const sendSignatureRequestEmail = async (to, signerName, url) => {
     },
   });
 
+  const link = `${process.env.CLIENT_URL}/sign/token/${token}`;
+
   const mailOptions = {
     from: '"Seal the Sign" <no-reply@sealthesign.com>',
     to,
