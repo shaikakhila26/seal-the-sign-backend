@@ -6,6 +6,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 
+const app = express();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -17,7 +19,7 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-const app = express();
+
 
 
 const allowedOrigins = [
@@ -32,7 +34,7 @@ app.use(cors({
 
 
 app.use('/uploads', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Origin', 'https://seal-the-sign.vercel.app');
   next();
 },express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
