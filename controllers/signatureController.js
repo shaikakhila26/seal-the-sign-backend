@@ -102,7 +102,7 @@ const fontPath = path.join(__dirname, '..', 'fonts', fontFile);
 const fontBytes = fs.readFileSync(fontPath);
 const customFont = await pdfDoc.embedFont(fontBytes, { subset: false });
 
-    
+console.log(fontPath);    
     
     const pageIndex = Math.max(0, (signature.page || 1) - 1);
     const pages = pdfDoc.getPages();
