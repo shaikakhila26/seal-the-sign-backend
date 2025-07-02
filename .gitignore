@@ -17,7 +17,6 @@ yarn-error.log*
 # OS metadata
 .DS_Store
 
-# Uploads and generated files
-uploads/
+
 
 Thumbs.db

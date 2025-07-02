@@ -9,9 +9,6 @@ import fs from 'fs';
 
 
 
-
-const app = express();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -19,6 +16,7 @@ const __dirname = path.dirname(__filename);
 
 //import signatureRoutes from './routes/signatureRoutes.js';
 
+const app = express();
 
 const uploadsPath = path.join(__dirname, 'uploads');
 
@@ -43,12 +41,8 @@ app.use(cors({
 }));
 
 
-app.use('/uploads', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://seal-the-sign.vercel.app'); // ✅ Use Vercel frontend domain
-  res.header('Access-Control-Allow-Methods', 'GET');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-}, express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 app.use(express.json());
 
