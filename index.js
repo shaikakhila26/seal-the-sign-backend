@@ -6,7 +6,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import fs from 'fs';
-import path from 'path';
+
 
 const uploadsPath = path.join(__dirname, 'uploads');
 
