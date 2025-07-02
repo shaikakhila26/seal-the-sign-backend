@@ -103,8 +103,8 @@ router.get('/pending/:token', async (req, res) => {
 
     res.json({
       signerName: request.signerName,
-      filePath: request.documentId.filePath,
-      documentId: request.documentId._id
+      filePath: request.documentId?.filePath,
+      documentId: request.documentId?._id
     });
   } catch (err) {
     console.error('❌ Fetch token error:', err);
