@@ -8,11 +8,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 
 
-const uploadsPath = path.join(__dirname, 'uploads');
 
-if (!fs.existsSync(uploadsPath)) {
-  fs.mkdirSync(uploadsPath);
-}
 
 const app = express();
 
@@ -23,6 +19,12 @@ const __dirname = path.dirname(__filename);
 
 //import signatureRoutes from './routes/signatureRoutes.js';
 
+
+const uploadsPath = path.join(__dirname, 'uploads');
+
+if (!fs.existsSync(uploadsPath)) {
+  fs.mkdirSync(uploadsPath);
+}
 
 
 dotenv.config();
