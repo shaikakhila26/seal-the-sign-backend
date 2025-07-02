@@ -82,8 +82,9 @@ router.post('/request', authMiddleware, async (req, res) => {
 
     await newRequest.save();
 
-    const signUrl = `http://localhost:5173/sign/${token}`;
-    await sendSignatureRequestEmail(recipientEmail, signerName, signUrl);
+    // ✅ Use your live frontend URL
+    const signUrl = `https://seal-the-sign.vercel.app/sign/${token}`;
+    await sendSignatureRequestEmail(recipientEmail, signerName, signUrl, token); // ✅ token passed
 
     res.status(200).json({ message: 'Signature request sent', token });
   } catch (err) {
@@ -91,6 +92,7 @@ router.post('/request', authMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Failed to send signature request' });
   }
 });
+
 
 // Fetch pending signature request by token
 router.get('/pending/:token', async (req, res) => {

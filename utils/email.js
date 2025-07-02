@@ -1,27 +1,19 @@
 import nodemailer from 'nodemailer';
 
-export const sendSignatureRequestEmail = async (to, signerName, url) => {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
 
-  const link = `${process.env.CLIENT_URL}/sign/token/${token}`;
-
+export const sendSignatureRequestEmail = async (recipientEmail, signerName, signUrl, token) => {
   const mailOptions = {
-    from: '"Seal the Sign" <no-reply@sealthesign.com>',
-    to,
-    subject: `Signature Request from ${signerName}`,
+    from: process.env.EMAIL_USER,
+    to: recipientEmail,
+    subject: 'Sign this Document',
     html: `
-      <p>Hello,</p>
-      <p><strong>${signerName}</strong> has requested your signature on a document.</p>
-      <p><a href="${url}">Click here to sign the document</a></p>
-      <p>This link is valid for 48 hours.</p>
+      <p>Hello ${signerName},</p>
+      <p>You have been requested to sign a document. Click the button below to begin:</p>
+      <p><a href="${signUrl}" target="_blank" style="padding:10px 16px; background:#007bff; color:#fff; text-decoration:none; border-radius:4px;">Sign Document</a></p>
+      <p>Or open this link: ${signUrl}</p>
     `
   };
 
   await transporter.sendMail(mailOptions);
 };
+
