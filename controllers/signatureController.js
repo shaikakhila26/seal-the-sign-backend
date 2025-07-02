@@ -66,7 +66,9 @@ export const applySignature = async (req, res) => {
     console.log('📄 Signature fetched from DB:', signature);
     if (!signature) return res.status(404).json({ message: 'Signature not found' });
 
-const filePath = path.join(__dirname, '..', document.filePath);
+const safePath = document.filePath.replace(/\\/g, '/'); // 🔁 Replace Windows slashes
+const filePath = path.join(__dirname, '..', safePath);
+
     const pdfBytes = fs.readFileSync(filePath);
     const pdfDoc = await PDFDocument.load(pdfBytes);
 

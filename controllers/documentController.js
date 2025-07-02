@@ -14,7 +14,8 @@ export const uploadDocument = async (req, res) => {
     const document = new Document({
       fileName: file.filename,           // renamed by multer
       originalName: file.originalname,   // original user filename
-      filePath: file.path,                   // local storage path
+      filePath: file.path.replace(/\\/g, '/'),  // ✅ Normalize path
+                   
       uploadedBy: req.user._id           // from auth middleware
     });
 
