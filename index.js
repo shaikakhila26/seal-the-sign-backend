@@ -5,6 +5,14 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import fs from 'fs';
+import path from 'path';
+
+const uploadsPath = path.join(__dirname, 'uploads');
+
+if (!fs.existsSync(uploadsPath)) {
+  fs.mkdirSync(uploadsPath);
+}
 
 const app = express();
 
@@ -34,9 +42,12 @@ app.use(cors({
 
 
 app.use('/uploads', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://seal-the-sign.vercel.app');
+  res.header('Access-Control-Allow-Origin', 'https://seal-the-sign.vercel.app'); // ✅ Use Vercel frontend domain
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
-},express.static(path.join(__dirname, 'uploads')));
+}, express.static(path.join(__dirname, 'uploads')));
+
 app.use(express.json());
 
 import authRoutes from './routes/authRoutes.js';
