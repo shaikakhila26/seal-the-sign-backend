@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // ✅ The function that uses the transporter
-export const sendSignatureRequestEmail = async (to, signerName, link) => {
+export const sendSignatureRequestEmail = async (recipientEmail, signerName, link) => {
   const mailOptions = {
     from: `"Seal the Sign" <${process.env.EMAIL_USER}>`,
     to : recipientEmail, // ✅ explicit and safe
