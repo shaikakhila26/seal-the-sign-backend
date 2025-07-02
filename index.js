@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 
 import fs from 'fs';
 
+dotenv.config();
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -25,7 +26,7 @@ if (!fs.existsSync(uploadsPath)) {
 }
 
 
-dotenv.config();
+
 
 
 
