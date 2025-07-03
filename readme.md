@@ -5,14 +5,14 @@ A secure and scalable digital document signing backend built with **Node.js**, *
 ## 📁 Folder Structure
 
 seal-the-sign-backend/
- controllers/            # Core business logic
- middleware/             # JWT Auth middleware
- models/                 # Mongoose schemas (User, Document, Signature)
- routes/                 # Express routes (auth, docs, signatures)
- utils/                  # PDF-lib logic
- uploads/                # PDF files (excluded in .gitignore)
- .env                    # Environment variables
- index.js               # Entry point
+ 1.controllers/            # Core business logic
+ 2. middleware/             # JWT Auth middleware
+ 3. models/                 # Mongoose schemas (User, Document, Signature)
+ 4. routes/                 # Express routes (auth, docs, signatures)
+ 5. utils/                  # PDF-lib logic
+ 6. uploads/                # PDF files (excluded in .gitignore)
+ 7. .env                    # Environment variables
+ 8. index.js               # Entry point
 
 ## 🚀 Features
 
@@ -55,7 +55,7 @@ seal-the-sign-backend/
 
 ## 🛠 Deployment Notes
 
-- ✅ Backend deployed on **Render**
+- Backend deployed on **Render**
 - Enable CORS for frontend origin
 
 ## ✅ Author
