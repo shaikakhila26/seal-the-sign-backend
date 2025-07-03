@@ -5,6 +5,7 @@ A secure and scalable digital document signing backend built with **Node.js**, *
 ## 📁 Folder Structure
 
 seal-the-sign-backend/
+
  1.controllers/            # Core business logic
  
  2. middleware/             # JWT Auth middleware
