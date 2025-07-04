@@ -69,4 +69,5 @@ seal-the-sign-backend/
 ## ✅ Author
 
 Akhila Shaik
+
 Computer Science | MERN Developer | Loves building full-stack apps
