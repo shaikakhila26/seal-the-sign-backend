@@ -68,5 +68,5 @@ seal-the-sign-backend/
 
 ## ✅ Author
 
-Kidoo26 (Akhila Shaik)
+Akhila Shaik
 Computer Science | MERN Developer | Loves building full-stack apps
